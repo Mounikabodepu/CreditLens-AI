@@ -10,7 +10,15 @@ load_dotenv()
 
 password_hash = PasswordHash.recommended()
 
-JWT_SECRET_KEY = os.getenv("CREDITLENS_JWT_SECRET")
+import streamlit as st
+
+try:
+    JWT_SECRET_KEY = (
+        os.getenv("CREDITLENS_JWT_SECRET")
+        or st.secrets.get("CREDITLENS_JWT_SECRET")
+    )
+except Exception:
+    JWT_SECRET_KEY = os.getenv("CREDITLENS_JWT_SECRET")
 
 if not JWT_SECRET_KEY:
     raise RuntimeError(

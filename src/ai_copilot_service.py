@@ -1,6 +1,7 @@
 
 import os
 from pathlib import Path
+import streamlit as st
 
 from dotenv import load_dotenv
 from google import genai
@@ -13,8 +14,18 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 
 # Read API configuration
-API_KEY = os.getenv("GEMINI_API_KEY")
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+try:
+    API_KEY = (
+        os.getenv("GEMINI_API_KEY")
+        or st.secrets.get("GEMINI_API_KEY")
+    )
+    MODEL_NAME = (
+        os.getenv("GEMINI_MODEL")
+        or st.secrets.get("GEMINI_MODEL", "gemini-3.8-flash")
+    )
+except Exception:
+    API_KEY = os.getenv("GEMINI_API_KEY")
+    MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
 
 def get_gemini_client():
