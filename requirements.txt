@@ -1,0 +1,12 @@
+streamlit
+pandas
+numpy
+scikit-learn
+joblib
+plotly
+streamlit-cookies-controller
+PyJWT
+pwdlib[argon2]
+python-dotenv
+shap
+google-genai

@@ -1,0 +1,36 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Python environment and cache
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# Local database and uploaded borrower records
+data/creditlens.db
+data/uploads/
+data/analysis_results/
+
+# Only publish the demo dataset required by the app
+data/*
+!data/processed/
+data/processed/*
+!data/processed/test_data.csv
+
+# Only publish the model used by the app
+models/*
+!models/creditlens_random_forest_tuned.joblib
+
+# Only publish global, non-individual reports
+reports/*
+!reports/model_comparison.csv
+!reports/random_forest_feature_importance.csv
+!reports/shap_feature_importance.png
+!reports/shap_summary.png
+
+# Local troubleshooting files
+cookie_test.py
+html_render_test.py
